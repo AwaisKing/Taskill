@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutId="KillShortcut2"
+        android:shortcutShortLabel="@string/shortut_kill_all_ignored">
+        <intent
+            android:action="awais.action.KILLALL_IGNORED"
+            android:targetClass="awais.taskill.activities.ShortcutActivity"
+            android:targetPackage="awais.taskill" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutId="KillShortcut1"
+        android:shortcutShortLabel="@string/shortut_kill_all">
+        <intent
+            android:action="awais.action.KILLALL"
+            android:targetClass="awais.taskill.activities.ShortcutActivity"
+            android:targetPackage="awais.taskill" />
+    </shortcut>
+</shortcuts>

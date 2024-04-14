@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- guides -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/vg1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <!-- main card view -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="8dp"
+        app:cardMaxElevation="8dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/vg1"
+        app:layout_constraintStart_toStartOf="@id/vg1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="640dp"
+        app:layout_constraintWidth_min="200dp"
+        tools:translationZ="-10dp">
+        <!-- close button -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btnClose"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:cardBackgroundColor="?colorButtonNormal"
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true"
+            app:shapeAppearanceOverlay="@style/BottomSheeterShapeAppearance.Rounded">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_kill"
+                app:tint="?colorControlNormal" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- main content -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="vertical"
+            android:paddingTop="38dp">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:gravity="center"
+                android:lines="1"
+                android:maxLines="1"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:singleLine="true"
+                android:text="Support / Donate"
+                android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+                android:textColor="?android:textColorPrimary"
+                app:fontFamily="sans-serif-condensed-medium" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:clickable="false"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:focusedByDefault="false"
+                android:screenReaderFocusable="false"
+                android:touchscreenBlocksFocus="true"
+                app:dividerColor="#305a595b"
+                tools:ignore="UnusedAttribute" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center"
+                android:paddingLeft="8dp"
+                android:paddingTop="4dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="4dp"
+                android:text="@string/donate_body"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                app:fontFamily="sans-serif-condensed" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:clickable="false"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:focusedByDefault="false"
+                android:screenReaderFocusable="false"
+                android:touchscreenBlocksFocus="true"
+                app:dividerColor="#305a595b"
+                tools:ignore="UnusedAttribute" />
+
+            <!-- buttons content -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDonate"
+                style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:backgroundTint="#fd0"
+                android:minHeight="58dp"
+                android:text="Buy Me a Coffee"
+                android:textColor="#000023"
+                android:textSize="18sp"
+                app:backgroundTint="#fd0"
+                app:icon="@drawable/buy_me_a_coffee"
+                app:iconGravity="textStart"
+                app:iconPadding="5dp"
+                app:iconSize="28dp"
+                app:iconTint="#000023" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- star cock -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:stateListAnimator="@animator/no_stater"
+        android:translationY="8dp"
+        app:cardBackgroundColor="?colorSurfaceVariant"
+        app:cardElevation="1dp"
+        app:cardMaxElevation="1dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toTopOf="@id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        app:layout_constraintVertical_bias="0.89"
+        app:shapeAppearanceOverlay="@style/BottomSheeterShapeAppearance.Rounded"
+        tools:ignore="UnusedAttribute"
+        tools:viewBindingIgnore="true">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp"
+            app:srcCompat="@drawable/buy_me_a_coffee" />
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

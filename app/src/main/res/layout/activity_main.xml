@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:fitsSystemWindows="true"
+        android:minHeight="?actionBarSize"
+        app:elevation="0dp"
+        app:menu="@menu/main_menu"
+        app:title="@string/app_name" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:allowClickWhenDisabled="false"
+        android:background="?android:listDivider"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:defaultFocusHighlightEnabled="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:focusedByDefault="false"
+        android:hapticFeedbackEnabled="false"
+        android:longClickable="false"
+        android:saveEnabled="true"
+        android:screenReaderFocusable="false"
+        tools:ignore="UnusedAttribute" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorSurfaceContainer">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="false"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbOnlyRunning"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:fitsSystemWindows="false"
+                android:padding="0dp"
+                android:text="Show only running apps"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                app:useMaterialThemeColors="true" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbSystem"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:fitsSystemWindows="false"
+                android:padding="0dp"
+                android:text="Show System apps"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                app:useMaterialThemeColors="true" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbLauncher"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:fitsSystemWindows="false"
+                android:padding="0dp"
+                android:text="Show Launcher"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                app:useMaterialThemeColors="true" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbThemesFonts"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:fitsSystemWindows="false"
+                android:padding="0dp"
+                android:text="Show Themes &amp; Fonts"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                app:useMaterialThemeColors="true" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbSystemProviders"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:fitsSystemWindows="false"
+                android:padding="0dp"
+                android:text="Show System providers"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                app:useMaterialThemeColors="true" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbAutoGenerated"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:fitsSystemWindows="false"
+                android:padding="0dp"
+                android:text="Show auto generated"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                app:useMaterialThemeColors="true" />
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/cbMyApp"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:fitsSystemWindows="false"
+                android:padding="0dp"
+                android:text="Show Taskill"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                app:useMaterialThemeColors="true" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </HorizontalScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:allowClickWhenDisabled="false"
+        android:background="?android:listDivider"
+        android:clickable="false"
+        android:contextClickable="false"
+        android:defaultFocusHighlightEnabled="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:focusedByDefault="false"
+        android:hapticFeedbackEnabled="false"
+        android:longClickable="false"
+        android:saveEnabled="true"
+        android:screenReaderFocusable="false"
+        tools:ignore="UnusedAttribute" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="false">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/rlItems"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvItems"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fitsSystemWindows="false"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                app:fastScrollEnabled="true"
+                app:fastScrollHorizontalThumbDrawable="@drawable/slider_thumb"
+                app:fastScrollHorizontalTrackDrawable="@drawable/slider_track"
+                app:fastScrollVerticalThumbDrawable="@drawable/slider_thumb"
+                app:fastScrollVerticalTrackDrawable="@drawable/slider_track"
+                app:layoutManager="LinearLayoutManager" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnKillAll"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="#CC372D"
+            android:backgroundTintMode="src_in"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:minHeight="64dp"
+            android:text="Kill All"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="22sp"
+            app:backgroundTint="#CC372D"
+            app:backgroundTintMode="src_in"
+            app:cornerRadius="12dp"
+            app:fontFamily="sans-serif-condensed-medium" />
+    </FrameLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

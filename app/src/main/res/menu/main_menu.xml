@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="AlwaysShowAction,HardcodedText">
+    <item
+        android:id="@+id/mSupport"
+        android:icon="@drawable/buy_me_a_coffee"
+        android:title="Support Development"
+        android:titleCondensed="Support Development"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/mAbout"
+        android:icon="@drawable/ic_info"
+        android:title="About"
+        android:titleCondensed="About"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/mSettings"
+        android:icon="@drawable/ic_settings"
+        android:title="Setttings"
+        android:titleCondensed="Setttings"
+        app:showAsAction="always" />
+</menu>

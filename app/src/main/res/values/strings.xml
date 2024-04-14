@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Taskill</string>
+
+    <string name="shortut_kill_all">Kill all</string>
+    <string name="shortut_kill_all_ignored">Kill all (ignore exceptions)</string>
+
+    <string name="donate_body" tools:ignore="Typos">this is an open-source project; and if you like my work,
+        please do support me by donating on \"Buy Me a Coffee\" so i can afford to keep making more "great?" apps. (:\n\n
+        if you don\'t wanna, it\'s cool, enjoy the app anyway!</string>
+
+    <string name="about_body">i created this app cause i didn\'t like apps running in background and draining my phone\'s battery,
+        and i had used Task Manager by Omich, Greenify and Hibernator but i didn\'t like those; also they don\'t have source code available.\n
+        welp idk what else to write here, but yeah if you like this app or any of my other apps, please consider donating so i can keep
+        making more (maybe even open-source) apps! (:\n\n
+        oh and the libraries and their licenses are below:</string>
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="?dialogPreferredPadding"
+    android:layout_marginEnd="?dialogPreferredPadding"
+    android:layout_marginBottom="6dp"
+    app:cardPreventCornerOverlap="false">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            android:textColor="?android:textColorPrimaryNoDisable"
+            android:textStyle="bold"
+            tools:text="metadata-extractor" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvLicense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+            android:textColor="?android:textColorTertiary"
+            android:textStyle="bold"
+            tools:text="metadata-extractor" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWebsite"
+            style="@style/Widget.Material3.Button.TextButton.Dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:minHeight="32dp"
+            android:text="Website"
+            android:textAllCaps="true"
+            app:cornerRadius="8dp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</com.google.android.material.card.MaterialCardView>
