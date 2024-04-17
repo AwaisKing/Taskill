@@ -269,7 +269,7 @@ public final class TasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (pkgInfo == null) return;
         final ProgressDialog progressDialog = ProgressDialog.showDialog(layoutInflater.getContext());
         BackgroundExecutor.getThreadPoolExecutor().execute(() -> {
-            Utils.killProcess(this, packagesHelper, pkgInfo);
+            Utils.killProcess(pkgInfo);
             removeSelection(pkgInfo);
             setPackageInfos(packagesHelper.getAllPackages());
             UiThreadHandler.run(this::refreshList);

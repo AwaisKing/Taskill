@@ -38,7 +38,6 @@ import java.util.List;
 import java.util.Set;
 
 import awais.taskill.R;
-import awais.taskill.adapters.TasksAdapter;
 
 public final class Utils {
     public static final Uri GITHUB_LINK = Uri.parse("https://github.com/AwaisKing/Taskill");
@@ -58,27 +57,16 @@ public final class Utils {
     }
 
     public static void killProcess(@Nullable final PackageInfo pkgInfo) {
-        killProcess(null, null, pkgInfo);
-    }
+        if (pkgInfo == null) return;
+        Shell shell = Shell.getCachedShell();
+        if (shell == null) shell = Shell.getShell();
 
-    public static void killProcess(@Nullable final TasksAdapter tasksAdapter, @Nullable final PackagesHelper packagesHelper, @Nullable final PackageInfo pkgInfo) {
-        if (pkgInfo != null) {
-            Shell shell = Shell.getCachedShell();
-            if (shell == null) shell = Shell.getShell();
-
-            final Shell.Job job = shell.newJob();
-            job.add("am force-stop " + pkgInfo.packageName)
-            // .add("am kill " + pkgInfo.packageName)
-            // .add("am stop-app " + pkgInfo.packageName)
-            ;
-            job.exec();
-        }
-
-        // if (tasksAdapter != null) {
-        //     tasksAdapter.clearSelection();
-        //     if (packagesHelper != null) tasksAdapter.setPackageInfos(packagesHelper.getAllPackages());
-        //     UiThreadHandler.run(tasksAdapter::refreshList);
-        // }
+        final Shell.Job job = shell.newJob();
+        job.add("am force-stop " + pkgInfo.packageName)
+        // .add("am kill " + pkgInfo.packageName)
+        // .add("am stop-app " + pkgInfo.packageName)
+        ;
+        job.exec();
     }
 
     @NonNull
