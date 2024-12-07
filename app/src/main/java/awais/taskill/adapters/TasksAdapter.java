@@ -63,12 +63,8 @@ public final class TasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         String app1Name = this.packagesHelper.getAppName(appInfo1);
         String app2Name = this.packagesHelper.getAppName(appInfo2);
-        {
-            if (TextUtils.isEmpty(app1Name)) app1Name = appInfo1.name;
-            if (TextUtils.isEmpty(app1Name)) app1Name = "";
-            if (TextUtils.isEmpty(app2Name)) app2Name = appInfo1.name;
-            if (TextUtils.isEmpty(app2Name)) app2Name = "";
-        }
+        if (TextUtils.isEmpty(app1Name)) app1Name = "";
+        if (TextUtils.isEmpty(app2Name)) app2Name = "";
 
         boolean isApp1System = (appInfo1.flags & ApplicationInfo.FLAG_SYSTEM) == ApplicationInfo.FLAG_SYSTEM;
         boolean isApp2System = (appInfo2.flags & ApplicationInfo.FLAG_SYSTEM) == ApplicationInfo.FLAG_SYSTEM;
@@ -78,9 +74,6 @@ public final class TasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         boolean isApp1User = !isApp1System & !isApp1Updated;
         boolean isApp2User = !isApp2System & !isApp2Updated;
-
-        final Collator mCollator = Collator.getInstance();
-        mCollator.setStrength(Collator.SECONDARY);
 
         if (isApp1User && isApp2User) return 0;
         if (isApp1User && isApp2Updated) return -1;
@@ -94,6 +87,8 @@ public final class TasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (isApp1System && isApp2Updated) return 1;
         if (isApp1System && isApp2System) return -1;
 
+        final Collator mCollator = Collator.getInstance();
+        mCollator.setStrength(Collator.SECONDARY);
         return mCollator.compare(app1Name, app2Name);
     };
     private final MenuItemClickListener menuItemClickListener = new MenuItemClickListener();
@@ -172,6 +167,7 @@ public final class TasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             taskBinding.tvVersion.setVisibility(showVersionLabel ? View.VISIBLE : View.GONE);
 
             if (showAppIcon) packagesHelper.loadIcon(packageInfo.packageName, taskBinding.ivIcon);
+            else taskBinding.ivIcon.setImageBitmap(null);
 
             String appName = packagesHelper.getAppName(appInfo);
             if (TextUtils.isEmpty(appName)) appName = appInfo.name;
@@ -471,13 +467,8 @@ public final class TasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                     return true;
 
                 case 2:
-                    if (isExcluded) {
-                        excludedPackages.remove(pkgInfo.packageName);
-                        excludedPackages.remove(pkgInfo.applicationInfo.packageName);
-                    } else {
-                        excludedPackages.add(pkgInfo.packageName);
-                        excludedPackages.add(pkgInfo.applicationInfo.packageName);
-                    }
+                    if (isExcluded) excludedPackages.remove(pkgInfo.packageName);
+                    else excludedPackages.add(pkgInfo.packageName);
                     packagesHelper.setExcludedPackages(excludedPackages);
                     setPackageInfos(packagesHelper.getAllPackages());
                     refreshList();

@@ -1,9 +1,7 @@
 package awais.taskill.dialogs;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -11,55 +9,62 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.util.TypedValueCompat;
 
-public final class ProgressDialog extends AlertDialog {
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import awais.taskill.R;
+
+public final class ProgressDialog {
     private final Context context;
     private ProgressBar mProgress;
-
-    private ProgressDialog(@NonNull final Context context) {
-        super(context, 0);
-        setCancelable(false);
-        setCanceledOnTouchOutside(false);
-        this.context = context;
-        this.mProgress = new ProgressBar(context);
-    }
-
-    @Override
-    protected void onCreate(final Bundle savedInstanceState) {
-        Context context = this.context;
-        if (context == null) context = getContext();
-        final DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-
-        int _128dp = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 128f, displayMetrics));
-        int _16dp = Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, displayMetrics));
-
-        if (mProgress == null) mProgress = new ProgressBar(context);
-        mProgress.setIndeterminate(true);
-
-        ViewGroup.LayoutParams layoutParams = mProgress.getLayoutParams();
-        if (layoutParams == null) layoutParams = new ViewGroup.LayoutParams(_128dp, _128dp);
-        else layoutParams.height = layoutParams.width = _128dp;
-
-        final ViewGroup.MarginLayoutParams marginLayoutParams = new ViewGroup.MarginLayoutParams(layoutParams);
-        marginLayoutParams.setMargins(_16dp, _16dp, _16dp, _16dp);
-        mProgress.setLayoutParams(marginLayoutParams);
-
-        setView(mProgress, _16dp, _16dp, _16dp, _16dp);
-
-        layoutParams = mProgress.getLayoutParams();
-        if (layoutParams instanceof FrameLayout.LayoutParams) {
-            final FrameLayout.LayoutParams frameParams = (FrameLayout.LayoutParams) layoutParams;
-            frameParams.gravity = Gravity.CENTER;
-            mProgress.setLayoutParams(frameParams);
-        }
-
-        super.onCreate(savedInstanceState);
-    }
+    private AlertDialog materialDialog;
+    private final int _16dp, _96dp;
 
     @NonNull
     public static ProgressDialog showDialog(final Context context) {
         final ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.show();
         return progressDialog;
+    }
+
+    private ProgressDialog(@NonNull final Context context) {
+        final DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        this._96dp = Math.round(TypedValueCompat.dpToPx(96f, displayMetrics));
+        this._16dp = Math.round(TypedValueCompat.dpToPx(16f, displayMetrics));
+
+        this.context = context;
+        this.mProgress = new ProgressBar(context);
+        this.materialDialog = getMaterialDialog();
+    }
+
+    private AlertDialog getMaterialDialog() {
+        if (materialDialog == null) {
+            if (mProgress == null) mProgress = new ProgressBar(context);
+            mProgress.setIndeterminate(true);
+            this.materialDialog = new MaterialAlertDialogBuilder(context, R.style.Theme_Dialog_Progress).setView(mProgress).create();
+        }
+        materialDialog.setCancelable(false);
+        materialDialog.setCanceledOnTouchOutside(false);
+        return materialDialog;
+    }
+
+    private void show() {
+        getMaterialDialog().show();
+        if (mProgress != null) {
+            ViewGroup.LayoutParams layoutParams = mProgress.getLayoutParams();
+            if (layoutParams != null) layoutParams.height = layoutParams.width = _96dp;
+            if (layoutParams instanceof FrameLayout.LayoutParams) {
+                ((FrameLayout.LayoutParams) layoutParams).gravity = Gravity.CENTER;
+                ((FrameLayout.LayoutParams) layoutParams).setMargins(_16dp, _16dp, _16dp, _16dp);
+            }
+            mProgress.setLayoutParams(layoutParams);
+        }
+    }
+
+    public void cancel() {
+        if (materialDialog != null && materialDialog.isShowing()) materialDialog.cancel();
+        materialDialog = null;
+        mProgress = null;
     }
 }

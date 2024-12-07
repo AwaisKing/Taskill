@@ -8,20 +8,20 @@ import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.core.graphics.Insets;
+import androidx.core.util.TypedValueCompat;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -53,12 +53,13 @@ public final class Main extends AppCompatActivity implements SwipeRefreshLayout.
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
 
         final SettingsHelper settingsHelper = SettingsHelper.getInstance(this);
-
         AppCompatDelegate.setDefaultNightMode(settingsHelper.getDarkMode());
-        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+
+        ActivityMainBinding mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        this.mainBinding = mainBinding;
 
         final long donationLastShown = settingsHelper.getDonationLastShown();
         if (donationLastShown == -1 || System.currentTimeMillis() - donationLastShown >= 432000000L)
@@ -71,7 +72,7 @@ public final class Main extends AppCompatActivity implements SwipeRefreshLayout.
 
         setSupportActionBar(toolbar);
 
-        final float _64dp = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 64f, getResources().getDisplayMetrics());
+        final float _64dp = TypedValueCompat.dpToPx(64f, getResources().getDisplayMetrics());
 
         ViewCompat.setOnApplyWindowInsetsListener(bindingRoot, (v, insets) -> {
             final Insets sysInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars()
@@ -88,6 +89,7 @@ public final class Main extends AppCompatActivity implements SwipeRefreshLayout.
 
         if (tasksAdapter == null) tasksAdapter = new TasksAdapter(this);
         rvItems.setHasFixedSize(true);
+        rvItems.setItemAnimator(null);
         rvItems.setAdapter(tasksAdapter);
 
         btnKillAll.setOnClickListener(this);

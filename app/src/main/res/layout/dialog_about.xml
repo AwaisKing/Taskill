@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clipChildren="false"
     android:clipToPadding="false"
     android:orientation="vertical"
     android:paddingTop="8dp">
@@ -173,11 +172,11 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
     </com.google.android.material.card.MaterialCardView>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:clipToPadding="false"
-        android:fillViewport="true"
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
 
@@ -199,7 +198,7 @@
                 android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
                 app:fontFamily="sans-serif-condensed" />
         </androidx.appcompat.widget.LinearLayoutCompat>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
@@ -224,6 +223,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
+        android:minHeight="52dp"
         android:text="OK"
         android:textSize="18sp" />
 </androidx.appcompat.widget.LinearLayoutCompat>

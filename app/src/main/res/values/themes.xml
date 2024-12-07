@@ -76,4 +76,11 @@
         <item name="shapeAppearance">@style/BottomSheeterShapeAppearance</item>
         <item name="shapeAppearanceOverlay">@style/BottomSheeterShapeAppearance</item>
     </style>
+
+    <style name="Theme.Dialog.Progress" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="windowMinWidthMinor">128dp</item>
+        <item name="windowMinWidthMajor">128dp</item>
+        <item name="android:windowMinWidthMinor">128dp</item>
+        <item name="android:windowMinWidthMajor">128dp</item>
+    </style>
 </resources>

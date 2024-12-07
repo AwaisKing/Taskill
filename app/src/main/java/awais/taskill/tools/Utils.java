@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
@@ -23,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.content.res.ResourcesCompat;
+import androidx.core.util.TypedValueCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -83,16 +83,10 @@ public final class Utils {
     }
 
     public static boolean isExcluded(@NonNull final Set<String> excludedPackages, @NonNull final PackageInfo pkgInfo) {
-        final ApplicationInfo appInfo = pkgInfo.applicationInfo;
-
-        boolean isExcluded = excludedPackages.contains(pkgInfo.packageName);
-        if (!isExcluded) isExcluded = excludedPackages.contains(appInfo.packageName);
-        if (!isExcluded) for (final String excludedPackage : excludedPackages) {
+        if (excludedPackages.contains(pkgInfo.packageName)) return true;
+        for (final String excludedPackage : excludedPackages)
             if (TextUtils.equals(excludedPackage, pkgInfo.packageName)) return true;
-            if (TextUtils.equals(excludedPackage, appInfo.packageName)) return true;
-        }
-
-        return isExcluded;
+        return false;
     }
 
     public static Context getDialogFixedContext(Context context, final BottomSheetDialogFragment dialogFragment, Dialog dialog) {
@@ -147,12 +141,12 @@ public final class Utils {
             final Resources resources = context.getResources();
             final DisplayMetrics displayMetrics = resources.getDisplayMetrics();
 
-            final boolean isDraggable = (options & 0b000001) != 0; // false
-            final boolean fitToContents = (options & 0b000010) != 0; // false
-            final boolean setExpandOffset = (options & 0b000100) != 0; // true
-            final boolean setIgnoreGesture = (options & 0b001000) != 0;// true
-            final boolean setStateExpanded = (options & 0b010000) != 0;// true
-            final boolean contentFullHeight = (options & 0b100000) != 0;// false
+            final boolean isDraggable = (options & 0b000001) != 0;        // false
+            final boolean fitToContents = (options & 0b000010) != 0;      // false
+            final boolean setExpandOffset = (options & 0b000100) != 0;    // true
+            final boolean setIgnoreGesture = (options & 0b001000) != 0;   // true
+            final boolean setStateExpanded = (options & 0b010000) != 0;   // true
+            final boolean contentFullHeight = (options & 0b100000) != 0;  // false
 
             if (sheetView != null) {
                 if (contentFullHeight) {
@@ -215,7 +209,7 @@ public final class Utils {
                 sheetView.setBackground(sheetDrawable);
             }
 
-            final int expandedOffset = !setExpandOffset ? 0 : Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, displayMetrics));
+            final int expandedOffset = !setExpandOffset ? 0 : Math.round(TypedValueCompat.dpToPx(24f, displayMetrics));
 
             sheetBehavior.setDraggable(isDraggable);
             sheetBehavior.setFitToContents(fitToContents);
