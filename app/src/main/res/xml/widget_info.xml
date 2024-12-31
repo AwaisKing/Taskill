@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:configure="awais.taskill.activities.ShortcutActivity"
+    android:description="@string/app_widget_description"
+    android:initialKeyguardLayout="@layout/widget_killer"
+    android:initialLayout="@layout/widget_killer"
+    android:minWidth="24dp"
+    android:minHeight="24dp"
+    android:previewImage="@mipmap/ic_launcher"
+    android:previewLayout="@layout/widget_killer"
+    android:resizeMode="horizontal|vertical"
+    android:targetCellWidth="1"
+    android:targetCellHeight="1"
+    android:updatePeriodMillis="0"
+    android:widgetCategory="home_screen|keyguard"
+    android:widgetFeatures="reconfigurable"
+    tools:ignore="UnusedAttribute" />

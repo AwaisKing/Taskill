@@ -5,6 +5,7 @@ import static awais.taskill.dialogs.BaseBottomSheetDialog.DialogType;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,8 +15,10 @@ import android.view.View;
 import android.widget.CompoundButton;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.LinearLayoutCompat;
@@ -23,6 +26,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.util.TypedValueCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -44,16 +48,42 @@ import awais.taskill.tools.PackagesHelper;
 import awais.taskill.tools.SettingsHelper;
 import awais.taskill.tools.Utils;
 
-/** @noinspection deprecation*/
+/** @noinspection deprecation, RestrictedApi*/
 public final class Main extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     private final Handler handler = new Handler(Looper.getMainLooper());
     private TasksAdapter tasksAdapter;
     private ActivityMainBinding mainBinding;
+    private OnBackPressedCallback onBackPressedCallback;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+
+        this.onBackPressedCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (!performAndBack()) return;
+
+                final ActionBar actionBar = getSupportActionBar();
+                if (actionBar != null && actionBar.collapseActionView()) return;
+
+                boolean canFinish = true;
+
+                android.app.FragmentManager fm = getFragmentManager();
+                if (fm != null) {
+                    boolean hasState = Build.VERSION.SDK_INT < Build.VERSION_CODES.O || fm.isStateSaved();
+                    if (!hasState && fm.popBackStackImmediate()) canFinish = false;
+                }
+                if (canFinish) {
+                    FragmentManager fmSupport = getSupportFragmentManager();
+                    if (!fmSupport.isStateSaved() && fmSupport.popBackStackImmediate()) canFinish = false;
+                }
+
+                if (canFinish) pressExplicitBack();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, this.onBackPressedCallback);
 
         final SettingsHelper settingsHelper = SettingsHelper.getInstance(this);
         AppCompatDelegate.setDefaultNightMode(settingsHelper.getDarkMode());
@@ -72,15 +102,14 @@ public final class Main extends AppCompatActivity implements SwipeRefreshLayout.
 
         setSupportActionBar(toolbar);
 
-        final float _64dp = TypedValueCompat.dpToPx(64f, getResources().getDisplayMetrics());
+        final int _64dp = Math.round(TypedValueCompat.dpToPx(64f, getResources().getDisplayMetrics()));
 
         ViewCompat.setOnApplyWindowInsetsListener(bindingRoot, (v, insets) -> {
-            final Insets sysInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars()
-                                                      | WindowInsetsCompat.Type.mandatorySystemGestures()
-                                                     );
+            final Insets sysInsets = insets.getInsets(WindowInsetsCompat.Type.mandatorySystemGestures() | WindowInsetsCompat.Type.systemGestures()
+                                                      | WindowInsetsCompat.Type.systemBars());
 
             toolbar.setPadding(sysInsets.left, sysInsets.top, sysInsets.right, 0);
-            rvItems.setPadding(sysInsets.left, 0, sysInsets.right, sysInsets.bottom + Math.round(_64dp));
+            rvItems.setPadding(sysInsets.left, 0, sysInsets.right, sysInsets.bottom + _64dp);
 
             btnKillAll.setTranslationY(-sysInsets.bottom);
 
@@ -240,13 +269,17 @@ public final class Main extends AppCompatActivity implements SwipeRefreshLayout.
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        if (tasksAdapter != null && tasksAdapter.hasSelection()) {
-            tasksAdapter.clearSelection();
-            return;
-        }
+    private boolean performAndBack() {
+        if (tasksAdapter == null || !tasksAdapter.hasSelection()) return true;
+        tasksAdapter.clearSelection();
+        return false;
+    }
+
+    private void pressExplicitBack() {
+        OnBackPressedCallback onBackPressedCallback = this.onBackPressedCallback;
+        if (onBackPressedCallback != null) onBackPressedCallback.setEnabled(false);
         super.onBackPressed();
+        if (onBackPressedCallback != null) onBackPressedCallback.setEnabled(true);
     }
 
     @Override

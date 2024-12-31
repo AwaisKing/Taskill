@@ -19,6 +19,7 @@
     <application
         android:name=".TaskApp"
         android:allowBackup="false"
+        android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -36,7 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
 
@@ -45,7 +46,7 @@
                 android:value=".activities.Main" />
             <meta-data
                 android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
+                android:resource="@xml/searchable" />-->
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
@@ -67,20 +68,23 @@
                 <data android:mimeType="text/*" />
                 <action android:name="awais.action.KILL" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
         </activity>
 
-        <!--<activity
-            android:name=".activities.SettingsActivity"
-            android:exported="true"
-            android:label="Settings"
-            android:parentActivityName=".activities.Main">
+        <!-- Widget shit -->
+        <receiver
+            android:name=".widgets.KillerWidget"
+            android:exported="false">
             <intent-filter>
-                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="awais.taskill.activities.Main" />
-        </activity>-->
 
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
     </application>
 </manifest>

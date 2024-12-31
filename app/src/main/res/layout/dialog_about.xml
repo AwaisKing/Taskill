@@ -44,7 +44,7 @@
         android:layout_marginStart="?dialogPreferredPadding"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="?dialogPreferredPadding"
-        app:cardBackgroundColor="?colorSurfaceContainer"
+        app:cardBackgroundColor="?colorSurfaceContainerHigh"
         app:cardPreventCornerOverlap="false">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -108,7 +108,7 @@
                     app:cardPreventCornerOverlap="false"
                     app:contentPadding="4dp"
                     app:rippleColor="?colorPrimary"
-                    app:shapeAppearanceOverlay="@style/BottomSheeterShapeAppearance.Rounded">
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Rounded">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="38dp"
@@ -135,7 +135,7 @@
                         app:cardPreventCornerOverlap="false"
                         app:contentPadding="4dp"
                         app:rippleColor="?colorPrimary"
-                        app:shapeAppearanceOverlay="@style/BottomSheeterShapeAppearance.Rounded">
+                        app:shapeAppearanceOverlay="@style/ShapeAppearance.Rounded">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="38dp"
@@ -156,7 +156,7 @@
                         app:cardPreventCornerOverlap="false"
                         app:contentPadding="4dp"
                         app:rippleColor="?colorPrimary"
-                        app:shapeAppearanceOverlay="@style/BottomSheeterShapeAppearance.Rounded">
+                        app:shapeAppearanceOverlay="@style/ShapeAppearance.Rounded">
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="38dp"
@@ -190,9 +190,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
-                android:paddingStart="8dp"
+                android:paddingStart="?dialogPreferredPadding"
                 android:paddingTop="4dp"
-                android:paddingEnd="8dp"
+                android:paddingEnd="?dialogPreferredPadding"
                 android:paddingBottom="8dp"
                 android:text="@string/about_body"
                 android:textAppearance="@style/TextAppearance.Material3.BodyLarge"

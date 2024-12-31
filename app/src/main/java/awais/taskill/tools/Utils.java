@@ -27,7 +27,7 @@ import androidx.core.util.TypedValueCompat;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.android.material.bottomsheet.BottomSheeter;
+import com.google.android.material.bottomsheet.BottomSheetHelper;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.shape.CornerFamily;
 import com.google.android.material.shape.MaterialShapeDrawable;
@@ -57,14 +57,18 @@ public final class Utils {
     }
 
     public static void killProcess(@Nullable final PackageInfo pkgInfo) {
-        if (pkgInfo == null) return;
+        if (pkgInfo != null) killProcess(pkgInfo.packageName);
+    }
+
+    public static void killProcess(@Nullable final String packageName) {
+        if (packageName == null) return;
         Shell shell = Shell.getCachedShell();
         if (shell == null) shell = Shell.getShell();
 
         final Shell.Job job = shell.newJob();
-        job.add("am force-stop " + pkgInfo.packageName)
-        // .add("am kill " + pkgInfo.packageName)
-        // .add("am stop-app " + pkgInfo.packageName)
+        job.add("am force-stop " + packageName)
+        // .add("am kill " + packageName)
+        // .add("am stop-app " + packageName)
         ;
         job.exec();
     }
@@ -135,7 +139,7 @@ public final class Utils {
         if (dialog instanceof BottomSheetDialog) {
             final BottomSheetDialog sheetDialog = (BottomSheetDialog) dialog;
             final BottomSheetBehavior<FrameLayout> sheetBehavior = sheetDialog.getBehavior();
-            final View sheetView = BottomSheeter.getSheetView(dialog);
+            final View sheetView = BottomSheetHelper.getSheetView(dialog);
 
             final Context context = sheetDialog.getContext();
             final Resources resources = context.getResources();

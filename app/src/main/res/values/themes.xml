@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Theme.MaterialComponents.DayNight.DarkActionBar -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- App Themes -->
     <style name="Theme.Awais" parent="Theme.Material3.DynamicColors.DayNight">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -29,35 +29,29 @@
         <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
         <item name="android:statusBarColor">?colorPrimaryVariant</item>
     </style>
-
-    <style name="Theme.Invisible" parent="Theme.MaterialComponents.DayNight">
-        <item name="windowNoTitle">true</item>
+    <style name="Theme.Invisible" parent="@android:style/Theme.DeviceDefault"><!-- todo was Theme.MaterialComponents.DayNight -->
         <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsFloating">false</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
+
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+
+        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
     </style>
 
-    <style name="BottomSheeterShapeAppearance" parent="">
-        <item name="cornerFamilyTopLeft">rounded</item>
-        <item name="cornerFamilyTopRight">rounded</item>
-        <item name="cornerSizeBottomRight">0dp</item>
-        <item name="cornerSizeBottomLeft">0dp</item>
-        <item name="cornerSizeTopLeft">12dp</item>
-        <item name="cornerSizeTopRight">12dp</item>
-    </style>
-
-    <style name="BottomSheeterShapeAppearance.Rounded">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">50%p</item>
-        <item name="cornerSizeBottomRight">50%p</item>
-        <item name="cornerSizeBottomLeft">50%p</item>
-        <item name="cornerSizeTopLeft">50%p</item>
-        <item name="cornerSizeTopRight">50%p</item>
-    </style>
-
-    <style name="BottomSheeter" parent="@style/ThemeOverlay.Material3.BottomSheetDialog">
+    <!-- Dialog Themes -->
+    <style name="Theme.Dialog.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
         <item name="behavior_peekHeight">auto</item>
         <item name="behavior_draggable">false</item>
         <item name="behavior_fitToContents">false</item>
@@ -73,14 +67,51 @@
         <item name="marginLeftSystemWindowInsets">true</item>
         <item name="marginRightSystemWindowInsets">true</item>
 
-        <item name="shapeAppearance">@style/BottomSheeterShapeAppearance</item>
-        <item name="shapeAppearanceOverlay">@style/BottomSheeterShapeAppearance</item>
+        <item name="shapeAppearance">@style/ShapeAppearance</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance</item>
     </style>
-
     <style name="Theme.Dialog.Progress" parent="ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="windowMinWidthMinor">128dp</item>
         <item name="windowMinWidthMajor">128dp</item>
         <item name="android:windowMinWidthMinor">128dp</item>
         <item name="android:windowMinWidthMajor">128dp</item>
+    </style>
+    <style name="Theme.Dialog.WidgetConfig" parent="@android:style/Theme.DeviceDefault.Dialog.MinWidth">
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:backgroundDimAmount">0</item>
+
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+
+        <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
+    </style>
+
+    <!-- Widget Styles -->
+    <style name="Theme.Awais.AppWidgetContainer" parent="@android:style/Theme.DeviceDefault" />
+
+    <!-- Shape Appearances -->
+    <style name="ShapeAppearance" parent="">
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeTopLeft">12dp</item>
+        <item name="cornerSizeTopRight">12dp</item>
+    </style>
+    <style name="ShapeAppearance.Rounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%p</item>
+        <item name="cornerSizeBottomRight">50%p</item>
+        <item name="cornerSizeBottomLeft">50%p</item>
+        <item name="cornerSizeTopLeft">50%p</item>
+        <item name="cornerSizeTopRight">50%p</item>
     </style>
 </resources>

@@ -1,11 +1,13 @@
 package awais.taskill.tools;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 
+@SuppressLint("ApplySharedPref")
 public final class SettingsHelper {
     private static SettingsHelper _instance;
     private final SharedPreferences prefs;
@@ -59,6 +61,10 @@ public final class SettingsHelper {
         return prefs == null || prefs.getBoolean(KEY_SHOW_EXCLUDED, true);
     }
 
+    public boolean getWidgetKillIgnoring() {
+        return prefs == null || prefs.getBoolean(KEY_WIDGET_KILL_IGNORING, true);
+    }
+
     public void setDonationLastShown() {
         if (prefs != null) prefs.edit().putLong(KEY_LAST_DONATION, System.currentTimeMillis()).apply();
     }
@@ -91,6 +97,10 @@ public final class SettingsHelper {
         if (prefs != null) prefs.edit().putBoolean(KEY_SHOW_EXCLUDED, show).apply();
     }
 
+    public void setWidgetKillIgnoring(final boolean killIgnoring) {
+        if (prefs != null) prefs.edit().putBoolean(KEY_WIDGET_KILL_IGNORING, killIgnoring).commit();
+    }
+
     private static final String KEY_DARK_MODE = "darkMode";
     private static final String KEY_LAST_DONATION = "donationLastShown";
     private static final String KEY_APP_ICON = "showAppIcon";
@@ -99,4 +109,5 @@ public final class SettingsHelper {
     private static final String KEY_APP_TYPE_INDICATOR = "showAppTypeIndicator";
     private static final String KEY_SHOW_KILL_EXCLUDED = "showExcludedKill";
     private static final String KEY_SHOW_EXCLUDED = "showExcludedApps";
+    private static final String KEY_WIDGET_KILL_IGNORING = "widgetAction";
 }

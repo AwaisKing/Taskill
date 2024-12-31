@@ -42,115 +42,124 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:orientation="vertical"
+        android:paddingStart="?dialogPreferredPadding"
+        android:paddingTop="4dp"
+        android:paddingEnd="?dialogPreferredPadding">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:gravity="center"
-            android:paddingLeft="8dp"
-            android:paddingTop="4dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="4dp"
-            android:text="Dark Mode"
-            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-            app:fontFamily="sans-serif-condensed" />
-
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/btgTheme"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:checkedButton="@id/btnThemeAuto"
-            app:selectionRequired="true"
-            app:singleSelection="true">
+            android:gravity="center_vertical">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnThemeAuto"
-                style="@style/Widget.Material3.Button.OutlinedButton"
+            <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Auto" />
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center_vertical"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="8dp"
+                android:paddingBottom="4dp"
+                android:text="Dark Mode"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                app:fontFamily="sans-serif-condensed" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnThemeDark"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="wrap_content"
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/btgTheme"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Dark" />
+                app:checkedButton="@id/btnThemeAuto"
+                app:selectionRequired="true"
+                app:singleSelection="true">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnThemeLight"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Light" />
-        </com.google.android.material.button.MaterialButtonToggleGroup>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnThemeAuto"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Auto" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnThemeDark"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Dark" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnThemeLight"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Light" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbAppIcon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Show App Icon"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            app:checkedState="checked"
+            app:fontFamily="sans-serif-condensed" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbAppPackage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Show App Package Label"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            app:checkedState="checked"
+            app:fontFamily="sans-serif-condensed" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbAppVersion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Show App Version Label"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            app:checkedState="checked"
+            app:fontFamily="sans-serif-condensed" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbAppType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Show App Type Indicator"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            app:checkedState="checked"
+            app:fontFamily="sans-serif-condensed" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbShowKill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Show Kill Action in Excluded Apps"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            app:checkedState="unchecked"
+            app:fontFamily="sans-serif-condensed" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbShowExcluded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Show Excluded Apps"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            app:checkedState="checked"
+            app:fontFamily="sans-serif-condensed" />
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/cbAppIcon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Show App Icon"
-        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-        app:checkedState="checked"
-        app:fontFamily="sans-serif-condensed" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/cbAppPackage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Show App Package Label"
-        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-        app:checkedState="checked"
-        app:fontFamily="sans-serif-condensed" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/cbAppVersion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Show App Version Label"
-        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-        app:checkedState="checked"
-        app:fontFamily="sans-serif-condensed" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/cbAppType"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Show App Type Indicator"
-        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-        app:checkedState="checked"
-        app:fontFamily="sans-serif-condensed" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/cbShowKill"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Show Kill Action in Excluded Apps"
-        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-        app:checkedState="unchecked"
-        app:fontFamily="sans-serif-condensed" />
-
-    <com.google.android.material.checkbox.MaterialCheckBox
-        android:id="@+id/cbShowExcluded"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Show Excluded Apps"
-        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
-        app:checkedState="checked"
-        app:fontFamily="sans-serif-condensed" />
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"

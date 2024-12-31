@@ -19,8 +19,8 @@ android {
         minSdk minSdk
         targetSdk compileSdk
 
-        versionCode 3
-        versionName '0.3'
+        versionCode 5
+        versionName '0.5'
 
         vectorDrawables {
             useSupportLibrary true
@@ -82,7 +82,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['.jar', '.so'])
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 
     implementation('androidx.multidex:multidex:2.0.1@aar') { transitive true }
     implementation('com.google.android.material:material:1.12.0@aar') { transitive true }

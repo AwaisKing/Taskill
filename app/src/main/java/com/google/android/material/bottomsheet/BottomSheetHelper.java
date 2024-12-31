@@ -11,7 +11,7 @@ import java.lang.ref.WeakReference;
 
 import awais.taskill.R;
 
-public final class BottomSheeter {
+public final class BottomSheetHelper {
     @Nullable
     public static <V extends View> View getSheetView(final BottomSheetBehavior<V> behavior) {
         if (behavior == null) return null;

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/background"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/widget_bg_container"
+    android:clipToOutline="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:theme="@style/Theme.Awais.AppWidgetContainer"
+    tools:ignore="UnusedAttribute">
+
+    <ImageView
+        android:id="@android:id/closeButton"
+        style="@android:style/Widget"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:clipToOutline="true"
+        android:contentDescription="@string/shortut_kill_all"
+        android:padding="5dp"
+        android:src="@mipmap/ic_launcher_round" />
+
+    <TextView
+        android:id="@android:id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="2dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="12sp" />
+</LinearLayout>

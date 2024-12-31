@@ -93,7 +93,7 @@ public final class TasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     };
     private final MenuItemClickListener menuItemClickListener = new MenuItemClickListener();
     private final HashSet<PackageInfo> runningApps = new HashSet<>(12, 0.95f);
-    private final HashSet<PackageInfo> selectedApps = new HashSet<>(12, 0.95f);
+    private final ArrayList<PackageInfo> selectedApps = new ArrayList<>(12);
     private final LayoutInflater layoutInflater;
     private final SettingsHelper settingsHelper;
     private PackagesHelper packagesHelper;
@@ -133,7 +133,7 @@ public final class TasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             final ApplicationInfo appInfo = packageInfo.applicationInfo;
             final MaterialCardView bindingRoot = taskBinding.getRoot();
 
-            bindingRoot.setChecked(selectedApps.contains(packageInfo));
+            bindingRoot.setChecked(selectedAppIndex(packageInfo) != -1);
             if (settingsHelper.showExcludedApps()) {
                 final boolean isExcluded = Utils.isExcluded(packagesHelper.getExcludedPackages(), packageInfo);
                 bindingRoot.setAlpha(isExcluded ? 0.6f : 1f);
@@ -372,18 +372,27 @@ public final class TasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public synchronized void refreshList() {
+    public void refreshList() {
         final Context context = layoutInflater == null ? null : layoutInflater.getContext();
         final Button btnKill = context instanceof Main ? ((Main) context).findViewById(R.id.btnKillAll) : null;
         if (btnKill != null) btnKill.setText(hasSelection() ? "Kill Selected" : "Kill All");
-
-        synchronized (TasksAdapter.class) {
-            notifyDataSetChanged();
-        }
+        notifyDataSetChanged();
     }
 
     public boolean hasSelection() {
         return !selectedApps.isEmpty();
+    }
+
+    private int selectedAppIndex(final PackageInfo pkgInfo) {
+        final int selectIndex = selectedApps.indexOf(pkgInfo);
+        if (selectIndex == -1) {
+            for (int i = 0, selectedAppsSize = selectedApps.size(); i < selectedAppsSize; i++) {
+                final PackageInfo selectedApp = selectedApps.get(i);
+                if (Objects.equals(selectedApp, pkgInfo) || TextUtils.equals(selectedApp.packageName, pkgInfo.packageName))
+                    return i;
+            }
+        }
+        return selectIndex;
     }
 
     private boolean startSelection(final PackageInfo pkgInfo) {
@@ -391,7 +400,8 @@ public final class TasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         int index = objectsList == null ? -1 : objectsList.indexOf(pkgInfo);
         if (index == -1) index = getItemPos(pkgInfo);
         if (index != -1) {
-            if (selectedApps.contains(pkgInfo)) selectedApps.remove(pkgInfo);
+            final int selectedAppIndex = selectedAppIndex(pkgInfo);
+            if (selectedAppIndex != -1) selectedApps.remove(selectedAppIndex);
             else selectedApps.add(pkgInfo);
 
             refreshList();
@@ -415,6 +425,11 @@ public final class TasksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public long getItemId(final int position) {
+        // if (objectsList == null) return super.getItemId(position);
+        // final Object obj = objectsList.get(position);
+        // // if (obj instanceof CharSequence) return super.getItemId(position);
+        // int result = 31 * System.identityHashCode(obj) + Objects.hashCode(obj);
+        // return true ? result : position;
         return position;
     }
 

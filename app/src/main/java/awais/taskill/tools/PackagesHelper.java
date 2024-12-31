@@ -91,7 +91,7 @@ public final class PackagesHelper {
     public void refreshPackageIcons() {
         final List<PackageInfo> installedPackages = getAllPackages();
         for (final PackageInfo pkgInfo : installedPackages) {
-            if (!pkgInfo.applicationInfo.enabled) continue;
+            if (pkgInfo == null || pkgInfo.applicationInfo == null || !pkgInfo.applicationInfo.enabled) continue;
 
             final String packageName = pkgInfo.packageName;
             final Bitmap bmp = iconsLruCache.get(packageName);
@@ -141,7 +141,7 @@ public final class PackagesHelper {
         final List<PackageInfo> returnPackages = new ArrayList<>(installedPackages.size() >>> 1);
 
         for (final PackageInfo pkgInfo : installedPackages) {
-            if (!pkgInfo.applicationInfo.enabled) continue;
+            if (pkgInfo == null || pkgInfo.applicationInfo == null || !pkgInfo.applicationInfo.enabled) continue;
 
             final String pkgName = pkgInfo.packageName;
             if (TextUtils.equals(pkgName, "android")) continue;

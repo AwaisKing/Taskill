@@ -50,7 +50,7 @@
             app:cardMaxElevation="0dp"
             app:cardPreventCornerOverlap="false"
             app:cardUseCompatPadding="true"
-            app:shapeAppearanceOverlay="@style/BottomSheeterShapeAppearance.Rounded">
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Rounded">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="match_parent"
@@ -166,7 +166,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardView"
         app:layout_constraintVertical_bias="0.89"
-        app:shapeAppearanceOverlay="@style/BottomSheeterShapeAppearance.Rounded"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Rounded"
         tools:ignore="UnusedAttribute"
         tools:viewBindingIgnore="true">
 

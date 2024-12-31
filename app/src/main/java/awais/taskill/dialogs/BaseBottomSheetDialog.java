@@ -39,7 +39,7 @@ public abstract class BaseBottomSheetDialog extends BottomSheetDialogFragment im
 
     public BaseBottomSheetDialog() {
         super();
-        setStyle(STYLE_NORMAL, R.style.BottomSheeter);
+        setStyle(STYLE_NORMAL, R.style.Theme_Dialog_BottomSheet);
     }
 
     @NonNull
@@ -112,7 +112,7 @@ public abstract class BaseBottomSheetDialog extends BottomSheetDialogFragment im
 
     @Override
     public int getTheme() {
-        return R.style.BottomSheeter;
+        return R.style.Theme_Dialog_BottomSheet;
     }
 
     public enum DialogType {
